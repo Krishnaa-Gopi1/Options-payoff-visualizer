@@ -31,4 +31,27 @@ def long_strangle_payoff(stock_prices,lower_strike,lower_premium,upper_strike,up
     
     return call+put -(upper_premium+lower_premium)
 
+def iron_condor_payoff(
+    stock_prices,
+    lowest_put_strike, lowest_put_premium,
+    lower_put_strike, lower_put_premium,
+    higher_call_strike, higher_call_premium,
+    highest_call_strike, highest_call_premium
+):
+    # Bull Put Spread 
+    long_put = np.maximum(0, lowest_put_strike - stock_prices)
+    short_put = np.maximum(0, lower_put_strike - stock_prices)
+    bull_put = short_put - long_put - (lower_put_premium - lowest_put_premium)
+
+    # Bear Call Spread 
+    short_call = np.maximum(0, stock_prices - higher_call_strike)
+    long_call = np.maximum(0, stock_prices - highest_call_strike)
+    bear_call = short_call - long_call - (higher_call_premium - highest_call_premium)
+
+   
+    return bull_put + bear_call
+
+def protective_put_payoff(stock_prices,stock_purchase_price,strike_price,premium):
+    return stock_prices - stock_purchase_price + np.maximum(strike_price-stock_prices,0) - premium
+
     
