@@ -1,6 +1,6 @@
 import numpy as np
 from plot import plot_payoff_curve
-from payoff import long_call_payoff,long_put_payoff,bull_call_spread_payoff,bear_put_spread_payoff,long_straddle_payoff,long_strangle_payoff,iron_condor_payoff,protective_put_payoff
+from strategies import long_call_payoff,long_put_payoff,bull_call_spread_payoff,bear_put_spread_payoff,long_straddle_payoff,long_strangle_payoff,iron_condor_payoff,protective_put_payoff
 
 choice = int(input("choose an option strategy\n1. long call\n2. long put \n3. bull call spread\n4. bear put spread payoff\n5. Long straddle\n6. Long Strangle \n7.Iron condor \n8. Protective put \n : "))
 
@@ -88,7 +88,7 @@ elif choice == 8:
 
     payoff = protective_put_payoff(stock_prices,stock_purchase_price,strike_price,premium)
     title = "Protective put payoff"
-    
+
 else:
     print("Invalid choice")
     exit()
